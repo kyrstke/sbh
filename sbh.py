@@ -58,12 +58,25 @@ class sbhAlgorithm():
         # solution = solver.solve(world)
         solutions = solver.solutions(world)
 
+        return solutions
+
+
+    def showSolutions(self, solutions):
         for solution in solutions:
             print(f'Distance: {solution.distance}')
             print(f'Tour: {solution.tour}')
             print('Path:')
             for i in solution.path:
                 print(f'Start: {i.start}, end: {i.end}, length: {i.length}, pheromone: {i.pheromone}')
+    
+
+    def showSolution(self, solutions):
+        solution = solutions[-1]
+        print(f'Distance: {solution.distance}')
+        print(f'Tour: {solution.tour}')
+        print('Path:')
+        for i in solution.path:
+            print(f'Start: {i.start}, end: {i.end}, length: {i.length}, pheromone: {i.pheromone}')
 
     def __parse__(self, string1, string2):
         if string1 == '':
@@ -86,7 +99,7 @@ class sbhAlgorithm():
         print(f"{len(self.__parseAll__(toStrings))}")
 
 
-    def antColonySearch(self):
+    def ant_colony_search(self):
         pheromonesMatrix = []
         optimum = []
         random.seed(time.time())
@@ -181,7 +194,7 @@ class sbhAlgorithm():
             if self.argv[3] == 'ACO':
                 self.ACO()
             elif self.argv[3] == 'antColonySearch':
-                self.antColonySearch()
+                self.ant_colony_search()
             else:
                 err = True
         else:
