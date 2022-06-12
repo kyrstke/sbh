@@ -49,7 +49,6 @@ class sbhAlgorithm():
 
         self.l = len(self.vertices[0])
         
-        # return vertices, matrix, l
 
 
     def ACO(self):
