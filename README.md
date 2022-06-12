@@ -12,10 +12,6 @@ Algorytm zaczyna od ustawienia wartości parametrów dla mrówek oraz określeni
 #### wynik
 Koncowa ściezka jest analizowana przez metodę `printNicely` i wypisywana w postaci końcowego łańcucha DNA.
 
-
-
-która posiada metodę `antColonySearch`, wykonuje główna część algorytmu znajdującego pierwotny łańcuch DNA. 
-
 ### Testy
 
 ---
