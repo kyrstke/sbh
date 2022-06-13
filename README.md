@@ -14,6 +14,10 @@ Końcowa ścieżka jest analizowana przez metodę `printNicely` i wypisywana w p
 
 ### Testy
 
+### Uruchamianie
+```py sbh.py n filename algorithm```
+```py sbh.py 209 nucleotides.txt antColonySearchSW```
+
 ---
 <p align="center">© Created by Konrad Romański & Krystian Jakusik</p>
 
