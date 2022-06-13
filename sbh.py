@@ -184,7 +184,7 @@ class sbh_algorithm():
 
             # end of time
             end = time.time()
-            print(f'Current sequence length: {current_sequence_length}')
+            # print(f'Current sequence length: {current_sequence_length}')
             if current_sequence_length == self.n - self.l + 1 or end - start > max_time:
                 print(f'Goal sequence length: {self.n - self.l + 1}')
                 print(f'Elapsed time: {end - start}')
@@ -211,11 +211,10 @@ class sbh_algorithm():
 
         # options for manipulation
         ants_per_vertex = 40
-        number_of_vertices_with_ants = 1
         alfa = 10
         beta = 10
         p = 0.3
-        max_time = 20
+        max_time = 10
 
         # ant placement
         vertex = 0
@@ -237,7 +236,7 @@ class sbh_algorithm():
                     for i in range(len(self.vertices)):
                         if (i not in current_path) and (current_sequence_length + self.matrix[current_path[-1]][i] <= self.n):
                             sum += pow(pheromones_matrix[current_path[-1]][i], alfa) * pow(1 / self.matrix[current_path[-1]][i], beta)
-                            print(sum)
+                            # print(sum)
                         vertices_probabilites.append(sum)
 
                     if sum == 0:
@@ -258,8 +257,7 @@ class sbh_algorithm():
                 # phermonoes reinforcement
                 pheromones = len(current_path) * 10
 
-                
-                #init clear currentPheromones
+                # init clear currentPheromones
                 for i in range(len(self.vertices)):
                     current_pheromones.append([])
                     for j in range(len(self.vertices)):
@@ -276,14 +274,15 @@ class sbh_algorithm():
 
             # end of time
             end = time.time()
-            # print(f'Current sequence length: {current_sequence_length}')
-            if current_sequence_length == self.n - self.l + 1 or end - start > max_time:
-                print(f'Goal sequence length: {self.n - self.l + 1}')
+            print(f'Current time is: {end - start}')
+            print(f'Current optimal path: {optimum}')
+            if len(optimum) == self.n - self.l + 1 or end - start > max_time:
+                print(f'\nGoal sequence length: {self.n - self.l + 1}')
                 print(f'Elapsed time: {end - start}')
                 print(f'Current sequence length: {current_sequence_length}')
                 print(f'Vertices visiting order: {optimum}')
                 print(f'Vertices visited: {len(optimum)}')
-                print(f'Vertices probabilities: {vertices_probabilites}')
+                # print(f'Vertices probabilities: {vertices_probabilites}')
                 print(f'Optlen: {optlen}')
                 self.print_nicely(optimum)
                 break
@@ -291,7 +290,7 @@ class sbh_algorithm():
 
     def main(self):
         self.read_file(self.argv[1])
-        print(f"DATA: \n{self.vertices}\n{self.matrix}\n{self.l}")
+        # print(f"DATA: \n{self.vertices}\n{self.matrix}\n{self.l}")
         err = False
         if len(self.argv) > 3:
             if self.argv[3] == 'ACO':
@@ -308,7 +307,7 @@ class sbh_algorithm():
 
         if err:
             print('You need to specify a proper algorithm name!')
-            print('Available algorithms: \n\t+ ACO \n\t+ antColonySearch')
+            print('Available algorithms: \n\t+ ACO \n\t+ antColonySearch \n\t+ antColonySearchSW')
             sys.exit()
                 
 
