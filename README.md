@@ -14,9 +14,38 @@ Końcowa ścieżka jest analizowana przez metodę `printNicely` i wypisywana w p
 
 ### Testy
 
+#### Testowanie parametrow algorytmu
+##### Tabela
+|id próby|n|n obliczone| % zgosności|czas dzialania|alfa|beta|p|mrówki na wierzchołek|
+|-|-|-|-|-|-|-|-|-|
+|1|209|207|--|--|10|10|0.3|40
+##### Wykresy
+
+#### Testowanie sekwencjonowania
+##### Tabela
+|id próby|n|n obliczone| % zgosności|długośc oligonukleotytów|% błędów wynikajacych<br>z powtórzeń| % błędów negatywnych| % błędów pozytywnych|
+|-|-|-|-|-|-|-|-|
+|1|209|207|--|--|--|--|--|
+
+##### Wykresy
+
+### Wnioski [POTRZEBNE?]
+
 ### Uruchamianie
-```py sbh.py n filename algorithm```
-```py sbh.py 209 nucleotides.txt antColonySearchSW```
+#### schemat
+```sh
+py sbh.py n filename algorithm
+```
+Opis parametrów:
+|parametr|opis|przykład|
+|-|-|-|
+|`n`|domyślna długość sekwencji|`209`|
+|`filename`|nazwa pliku z danymi|`nucleotides.txt`|
+|`algorithm`|nazwa algorytmu|- `ACO`<br>- `antColonySearch`<br>- `antColonySearchSW`|
+#### przykład
+```sh
+py sbh.py 209 nucleotides.txt antColonySearchSW
+```
 
 ---
 <p align="center">© Created by Konrad Romański & Krystian Jakusik</p>
