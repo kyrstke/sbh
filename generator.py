@@ -1,8 +1,8 @@
 import random
 
+letters = 'CATG'
 
 def generateSequence(size: int):
-    letters = 'CATG'
     return ''.join([random.choice(letters) for _ in range(size)])
 
 
@@ -22,6 +22,17 @@ def saveToFile(filename: str, nucleotides: str):
         f.write(first_node)
         for nucleotide in nucleotides:
             f.write('\n' + nucleotide)
+
+def removeRandom(string: str, factor: int = 0.7):
+    return ''.join([s for s in string if random.random() < factor])
+
+
+def insertRandom(string: str, factor: int = 0.7):
+    return ''.join([s if random.random() < factor else s+random.choice(letters) for s in string ])
+
+
+def duplicateRandom(string: str, factor: int = 0.7):
+    return ''.join([s if random.random() < factor else s+s for s in string ])
 
 
 def main():
