@@ -32,7 +32,8 @@ Końcowa ścieżka jest analizowana przez metodę `printNicely` i wypisywana w p
 ### Wnioski [POTRZEBNE?]
 
 ### Uruchamianie
-#### schemat
+#### Program
+##### schemat
 ```sh
 py sbh.py n filename algorithm
 ```
@@ -42,9 +43,24 @@ Opis parametrów:
 |`n`|domyślna długość sekwencji|`209`|
 |`filename`|nazwa pliku z danymi|`nucleotides.txt`|
 |`algorithm`|nazwa algorytmu|- `ACO`<br>- `antColonySearch`<br>- `antColonySearchSW`|
-#### przykład
+##### przykład
 ```sh
 py sbh.py 209 nucleotides.txt antColonySearchSW
+```
+#### Generator
+##### schemat
+```sh
+py generator.py n nucleotides errors
+```
+Opis parametrów:
+|parametr|opis|przykład|
+|-|-|-|
+|`n`|domyślna długość sekwencji|`209`|
+|`nucleotides`|długoś nukleotydów|`10`|
+|`errors`|opcje błędów rozdzielone `,`,<br>kolejnośc dowolna<br>`:` jako  separator skrótu i liczby<br>`x`, `y`, `z` jako liczby błędów |- usunięcie: `r:x`<br>- insercja: `i:y`<br>- duplikacja: `d:z`|
+##### przykład
+```sh
+py generator.py 209 10 r:10,i:5,d:20
 ```
 
 ---
