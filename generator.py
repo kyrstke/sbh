@@ -3,7 +3,7 @@ import random
 import sys
 import numpy as np
 
-class generator:
+class Generator:
     def __init__(self, sequence_length: int = 200, nucleotide_length: int = 10, n_remove: int = 0, n_insert: int = 0, n_duplicate: int = 0):
         self.sequence_length = sequence_length
         self.nucleotide_length = nucleotide_length
@@ -15,7 +15,6 @@ class generator:
         self.letters = 'ACGT'
         self.nucleotides = []
         self.sequence = ''
-
 
         
     def generateSequence(self, size: int):
@@ -45,16 +44,19 @@ class generator:
         result = [[] if i in to_duplicate else [i] for i in li]
         return list(np.concatenate(result).flat)
 
+
     def insertRandomList(self, li: list, quantity: int):
         to_duplicate = random.sample(li, quantity)
         result = [[i, ''.join([random.choice(self.letters) for i in range(len(li[0]))])] if i in to_duplicate 
             else [i] for i in li]
         return list(np.concatenate(result).flat)
 
+
     def duplicateRandomList(self, li: list, quantity: int):
         to_duplicate = random.sample(li, quantity)
         result = [[i, i] if i in to_duplicate else [i] for i in li]
         return list(np.concatenate(result).flat)
+
 
     def createErrors(self):
         self.nucleotides_with_errors = deepcopy(self.nucleotides)
@@ -62,7 +64,6 @@ class generator:
         self.nucleotides_with_errors = self.insertRandomList(self.nucleotides_with_errors, self.n_insert)
         self.nucleotides_with_errors = self.duplicateRandomList(self.nucleotides_with_errors, self.n_duplicate)
         
-
 
 
     def main(self):
@@ -100,5 +101,5 @@ if __name__ == '__main__':
         print(n_remove, n_insert, n_duplicate)
 
 
-    obj = generator(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate)
+    obj = Generator(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate)
     obj.main()
