@@ -3,7 +3,7 @@ from sbh import sbh_algorithm
 from analysis import Analysis
 import sys
 
-def main(sequence_length: int = 209, nucleotide_length: int = 10, n_remove: int = 40, n_insert: int = 0, n_duplicate: int = 0, filename: str = 'nucleotides_with_errors.txt', algorithm: str = 'antColonySearchSW'):
+def main(sequence_length: int = 209, nucleotide_length: int = 10, n_remove: int = 0, n_insert: int = 0, n_duplicate: int = 0, filename: str = 'nucleotides_with_errors.txt', algorithm: str = 'antColonySearchSW'):
     generator = Generator(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate)
     generator.main()
 
@@ -16,4 +16,4 @@ def main(sequence_length: int = 209, nucleotide_length: int = 10, n_remove: int 
 
 if __name__ == '__main__':
     # sequence_length = int(sys.argv[2])
-    main()
+    main(sequence_length=400, n_remove=80, n_insert=0, n_duplicate=0)

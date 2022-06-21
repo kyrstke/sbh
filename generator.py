@@ -68,13 +68,8 @@ class Generator:
 
     def main(self):
         self.generateSequence(self.sequence_length)
-        print(self.sequence)
-
         self.nucleotides = [*self.cutSequence(self.sequence, self.nucleotide_length)]
-        print(self.nucleotides)
-
         self.createErrors()
-
         self.saveToFile('nucleotides.txt', self.nucleotides)
         self.saveToFile('nucleotides_with_errors.txt', self.nucleotides_with_errors)
 

@@ -38,6 +38,8 @@ class sbh_algorithm():
             self.vertices.append(line.replace("\n", ""))
         f.close()
 
+
+    def initialize_matrix(self):
         for vertex1 in self.vertices:
             self.matrix.append([])
             for vertex2 in self.vertices:
@@ -90,13 +92,14 @@ class sbh_algorithm():
         return result
 
 
-    def print_nicely(self, path):
+    def merge_into_sequence(self, path):
         to_strings = []
-        
         for i in range(len(path)):
             to_strings.append(self.vertices[path[i]])
         self.result = self.__parse_all__(to_strings)
 
+
+    def print_nicely(self):
         print(f"Sequence: {self.result}")
         print(f"Sequence length: {len(self.result)}")
 
@@ -209,10 +212,13 @@ class sbh_algorithm():
         alfa = 10
         beta = 10
         p = 0.3
-        max_time = 10
+        max_time = 20
 
         # ant placement
         vertex = 0
+
+        # no improvement counter
+        counter = 0
 
         # the beginning
         start = time.time()
@@ -223,6 +229,7 @@ class sbh_algorithm():
             for ant in range(ants_per_vertex):
                 current_path = [vertex]
                 current_sequence_length = self.l
+                counter += 1
 
                 # ant is going to walk through the graph
                 while True:
@@ -246,6 +253,7 @@ class sbh_algorithm():
 
                 #chanage optimal path
                 if len(current_path) > len(optimum):
+                    counter = 0
                     optimum = current_path
                     optlen = current_sequence_length
                 
@@ -269,22 +277,26 @@ class sbh_algorithm():
 
             # end of time
             end = time.time()
-            print(f'Current time is: {end - start}')
-            print(f'Current optimal path: {optimum}')
-            if len(optimum) == self.n - self.l + 1 or end - start > max_time:
-                print(f'\nGoal sequence length: {self.n - self.l + 1}')
-                print(f'Elapsed time: {end - start}')
-                print(f'Current sequence length: {current_sequence_length}')
-                print(f'Vertices visiting order: {optimum}')
-                print(f'Vertices visited: {len(optimum)}')
+            print(f'Current time is: {round(end - start, 3)} seconds')
+
+            
+            # print(f'Current optimal path: {optimum}')
+
+            if len(optimum) == self.n - self.l + 1 or counter >= 10 or end - start > max_time:
+                # print(f'\nGoal sequence length: {self.n - self.l + 1}')
+                print(f'Elapsed time: {round(end - start, 3)} seconds')
+                # print(f'Current sequence length: {current_sequence_length}')
+                # print(f'Vertices visiting order: {optimum}')
+                # print(f'Vertices visited: {len(optimum)}')
                 # print(f'Vertices probabilities: {vertices_probabilites}')
-                print(f'Optlen: {optlen}')
-                self.print_nicely(optimum)
+                self.merge_into_sequence(optimum)
+                self.print_nicely()
                 break
 
 
     def main(self):
         self.read_file(self.filename)
+        self.initialize_matrix()
         # print(f"DATA: \n{self.vertices}\n{self.matrix}\n{self.l}")
 
         err = False
@@ -306,9 +318,10 @@ class sbh_algorithm():
 
 
 if __name__ == '__main__':
-    sequence_length = int(sys.argv[2]) # original sequence length
     filename = sys.argv[1]
+    sequence_length = int(sys.argv[2]) # original sequence length
+    algorithm = sys.argv[3]
 
-    obj = sbh_algorithm(sequence_length, filename)
-    obj.main()
+    sbh = sbh_algorithm(sequence_length, filename, algorithm)
+    sbh.main()
 
