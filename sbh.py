@@ -6,14 +6,13 @@ import random
 import sys
 
 class sbh_algorithm():
-    def __init__(self, argv) -> None:
+    def __init__(self, n: int = 200, filename: str = 'nucleotides.txt', algorithm: str = 'antColonySearchSW') -> None:
         self.vertices = []
         self.matrix = []
         self.l = 0
-        self.argv = argv
-        self.n = int(argv[2]) # original sequence length
-
-        # if self.argv[3]: self.argv[3] = int(self.argv[3])
+        self.n = n
+        self.filename = filename
+        self.algorithm = algorithm
     
 
     def __euclidean__(self, a, b):
@@ -35,10 +34,8 @@ class sbh_algorithm():
 
     def read_file(self, file):
         f = open(file, "r")
-
         for line in f:
             self.vertices.append(line.replace("\n", ""))
-
         f.close()
 
         for vertex1 in self.vertices:
@@ -56,13 +53,11 @@ class sbh_algorithm():
         solver = pants.Solver()
 
         # solution = solver.solve(world)
-        solutions = solver.solutions(world)
-
-        return solutions
+        self.solutions = solver.solutions(world)
 
 
-    def show_solutions(self, solutions):
-        for solution in solutions:
+    def show_solutions(self):
+        for solution in self.solutions:
             print(f'Distance: {solution.distance}')
             print(f'Tour: {solution.tour}')
             print('Path:')
@@ -70,8 +65,8 @@ class sbh_algorithm():
                 print(f'Start: {i.start}, end: {i.end}, length: {i.length}, pheromone: {i.pheromone}')
     
 
-    def show_solution(self, solutions):
-        solutions = [*solutions]
+    def show_solution(self):
+        solutions = [*self.solutions]
         # print(solutions)
         solution = solutions[-1]
         print(f'Distance: {solution.distance}')
@@ -100,10 +95,10 @@ class sbh_algorithm():
         
         for i in range(len(path)):
             to_strings.append(self.vertices[path[i]])
-        result = self.__parse_all__(to_strings)
+        self.result = self.__parse_all__(to_strings)
 
-        print(f"Sequence: {result}")
-        print(f"Sequence length: {len(result)}")
+        print(f"Sequence: {self.result}")
+        print(f"Sequence length: {len(self.result)}")
 
 
     def ant_colony_search(self):
@@ -289,19 +284,17 @@ class sbh_algorithm():
 
 
     def main(self):
-        self.read_file(self.argv[1])
+        self.read_file(self.filename)
         # print(f"DATA: \n{self.vertices}\n{self.matrix}\n{self.l}")
+
         err = False
-        if len(self.argv) > 3:
-            if self.argv[3] == 'ACO':
-                solution = self.aco()
-                self.show_solutions(solution)
-            elif self.argv[3] == 'antColonySearch':
-                self.ant_colony_search()
-            elif self.argv[3] == 'antColonySearchSW':
-                self.ant_colony_search_with_starting_vertex()
-            else:
-                err = True
+        if self.algorithm == 'ACO':
+            self.aco()
+            self.show_solutions()
+        elif self.algorithm == 'antColonySearch':
+            self.ant_colony_search()
+        elif self.algorithm == 'antColonySearchSW':
+            self.ant_colony_search_with_starting_vertex()
         else:
             err = True
 
@@ -313,6 +306,9 @@ class sbh_algorithm():
 
 
 if __name__ == '__main__':
-    obj = sbh_algorithm(sys.argv)
+    sequence_length = int(sys.argv[2]) # original sequence length
+    filename = sys.argv[1]
+
+    obj = sbh_algorithm(sequence_length, filename)
     obj.main()
 

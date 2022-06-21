@@ -18,7 +18,7 @@ class Generator:
 
         
     def generateSequence(self, size: int):
-        return ''.join([random.choice(self.letters) for _ in range(size)])
+        self.sequence = ''.join([random.choice(self.letters) for _ in range(size)])
     
 
     def cutSequence(self, sequence: str, nucleotide_length: int):
@@ -67,7 +67,7 @@ class Generator:
 
 
     def main(self):
-        self.sequence = self.generateSequence(self.sequence_length)
+        self.generateSequence(self.sequence_length)
         print(self.sequence)
 
         self.nucleotides = [*self.cutSequence(self.sequence, self.nucleotide_length)]
