@@ -13,6 +13,7 @@ class sbh_algorithm():
         self.n = n
         self.filename = filename
         self.algorithm = algorithm
+        self.optimum = []
     
 
     def __euclidean__(self, a, b):
@@ -97,12 +98,7 @@ class sbh_algorithm():
         for i in range(len(path)):
             to_strings.append(self.vertices[path[i]])
         self.result = self.__parse_all__(to_strings)
-
-
-    def print_nicely(self):
-        print(f"Sequence: {self.result}")
-        print(f"Sequence length: {len(self.result)}")
-
+        
 
     def ant_colony_search(self):
         pheromones_matrix = []
@@ -124,6 +120,9 @@ class sbh_algorithm():
         p = 0.3
         max_time = 20
 
+        # no improvement counter
+        counter = 0
+
         # the beginning
         start = time.time()
         while True:
@@ -136,19 +135,22 @@ class sbh_algorithm():
                 for ant in range(ants_per_vertex):
                     current_path = [vertex]
                     current_sequence_length = self.l
+                    counter += 1
 
                     # ant is going to walk through the graph
+                    print(f'ant {ant} started its path at vertex {vertex}...')
                     while True:
                         vertices_probabilites = []
                         sum = 0
                         for i in range(len(self.vertices)):
                             if (i not in current_path) and (current_sequence_length + self.matrix[current_path[-1]][i] <= self.n):
                                 sum += pow(pheromones_matrix[current_path[-1]][i], alfa) * pow(1 / self.matrix[current_path[-1]][i], beta)
+                                # print(sum)
                             vertices_probabilites.append(sum)
 
                         if sum == 0:
                             break
-
+                        
                         roll = random.uniform(0, sum)
                         for i in range(len(vertices_probabilites)):
                             if roll <= vertices_probabilites[i]:
@@ -157,15 +159,15 @@ class sbh_algorithm():
                                 break
 
                     #chanage optimal path
-                    if len(current_path) > len(optimum):
-                        optimum = current_path
+                    if len(current_path) > len(self.optimum):
+                        counter = 0
+                        self.optimum = current_path
                         optlen = current_sequence_length
                     
                     # phermonoes reinforcement
                     pheromones = len(current_path) * 10
 
-                    
-                    #init clear currentPheromones
+                    # init clear currentPheromones
                     for i in range(len(self.vertices)):
                         current_pheromones.append([])
                         for j in range(len(self.vertices)):
@@ -182,22 +184,16 @@ class sbh_algorithm():
 
             # end of time
             end = time.time()
-            # print(f'Current sequence length: {current_sequence_length}')
-            if current_sequence_length == self.n - self.l + 1 or end - start > max_time:
-                print(f'Goal sequence length: {self.n - self.l + 1}')
-                print(f'Elapsed time: {end - start}')
-                print(f'Current sequence length: {current_sequence_length}')
-                print(f'Vertices visiting order: {optimum}')
-                print(f'Vertices visited: {len(optimum)}')
-                print(f'Vertices probabilities: {vertices_probabilites}')
-                print(f'Optlen: {optlen}')
-                self.print_nicely(optimum)
+            
+            if len(self.optimum) == self.n - self.l + 1 or counter >= 10 or end - start > max_time:
+                self.merge_into_sequence(self.optimum)
+                self.print_results(start, end)
                 break
 
 
     def ant_colony_search_with_starting_vertex(self):
         pheromones_matrix = []
-        optimum = []
+        self.optimum = []
         random.seed(time.time())
         optlen = 0
         
@@ -232,6 +228,7 @@ class sbh_algorithm():
                 counter += 1
 
                 # ant is going to walk through the graph
+                print(f'ant {ant} started its path...')
                 while True:
                     vertices_probabilites = []
                     sum = 0
@@ -243,7 +240,7 @@ class sbh_algorithm():
 
                     if sum == 0:
                         break
-
+                    
                     roll = random.uniform(0, sum)
                     for i in range(len(vertices_probabilites)):
                         if roll <= vertices_probabilites[i]:
@@ -252,9 +249,9 @@ class sbh_algorithm():
                             break
 
                 #chanage optimal path
-                if len(current_path) > len(optimum):
+                if len(current_path) > len(self.optimum):
                     counter = 0
-                    optimum = current_path
+                    self.optimum = current_path
                     optlen = current_sequence_length
                 
                 # phermonoes reinforcement
@@ -282,16 +279,21 @@ class sbh_algorithm():
             
             # print(f'Current optimal path: {optimum}')
 
-            if len(optimum) == self.n - self.l + 1 or counter >= 10 or end - start > max_time:
-                # print(f'\nGoal sequence length: {self.n - self.l + 1}')
-                print(f'Elapsed time: {round(end - start, 3)} seconds')
-                # print(f'Current sequence length: {current_sequence_length}')
-                # print(f'Vertices visiting order: {optimum}')
-                # print(f'Vertices visited: {len(optimum)}')
-                # print(f'Vertices probabilities: {vertices_probabilites}')
-                self.merge_into_sequence(optimum)
-                self.print_nicely()
+            if len(self.optimum) == self.n - self.l + 1 or counter >= 10 or end - start > max_time:
+                self.merge_into_sequence(self.optimum)
+                self.print_results(start, end)
                 break
+    
+
+    def print_results(self, start, end):
+        print(f'Elapsed time: {round(end - start, 3)} seconds')
+
+        print(f'Goal sequence length: {self.n - self.l + 1}')
+        print(f'Vertices visiting order: {self.optimum}')
+        print(f'Vertices visited: {len(self.optimum)}')
+
+        print(f"Sequence: {self.result}")
+        print(f"Sequence length: {len(self.result)}")
 
 
     def main(self):

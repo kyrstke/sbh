@@ -63,6 +63,10 @@ class Generator:
         self.nucleotides_with_errors = self.removeRandomList(self.nucleotides_with_errors, self.n_remove)
         self.nucleotides_with_errors = self.insertRandomList(self.nucleotides_with_errors, self.n_insert)
         self.nucleotides_with_errors = self.duplicateRandomList(self.nucleotides_with_errors, self.n_duplicate)
+    
+
+    def print_sequence(self):
+        print(self.sequence)
         
 
 

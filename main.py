@@ -16,4 +16,4 @@ def main(sequence_length: int = 209, nucleotide_length: int = 10, n_remove: int 
 
 if __name__ == '__main__':
     # sequence_length = int(sys.argv[2])
-    main(sequence_length=400, n_remove=80, n_insert=0, n_duplicate=0)
+    main(sequence_length=371, n_remove=102, n_insert=0, n_duplicate=0, algorithm='antColonySearchSW')
