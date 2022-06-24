@@ -5,7 +5,7 @@ import math
 import random
 import sys
 
-class sbh_algorithm():
+class sbhAlgorithm():
     def __init__(self, n: int = 200, filename: str = 'nucleotides.txt', algorithm: str = 'antColonySearchSW') -> None:
         self.vertices = []
         self.matrix = []
@@ -324,6 +324,6 @@ if __name__ == '__main__':
     sequence_length = int(sys.argv[2]) # original sequence length
     algorithm = sys.argv[3]
 
-    sbh = sbh_algorithm(sequence_length, filename, algorithm)
+    sbh = sbhAlgorithm(sequence_length, filename, algorithm)
     sbh.main()
 
