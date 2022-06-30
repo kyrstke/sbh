@@ -31,5 +31,13 @@ if __name__ == '__main__':
         n_duplicate = 0
         filename = 'nucleotides_with_errors.txt'
         algorithm = 'antColonySearchSW'
+    
+    nucleotide_quantity = sequence_length/nucleotide_length
+    print(f"Seqence length: {sequence_length}")
+    print(f"Nucleotide length: {nucleotide_length}")
+    print(f"Removed nucleotides: {n_remove} {n_remove/nucleotide_quantity}")
+    print(f"Inserted nucleotides: {n_insert} {n_insert/nucleotide_quantity}")
+    print(f"Duplicated nucleotides: {n_duplicate} {n_duplicate/nucleotide_quantity}")
+
 
     main(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate, filename, algorithm)

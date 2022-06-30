@@ -5,8 +5,11 @@ import math
 import random
 import sys
 
+from pyrsistent import s
+
 class sbhAlgorithm():
-    def __init__(self, n: int = 200, filename: str = 'nucleotides.txt', algorithm: str = 'antColonySearchSW') -> None:
+    def __init__(self, n: int = 200, filename: str = 'nucleotides.txt', algorithm: str = 'antColonySearchSW', 
+    ants_per_vertex: int = 40, alfa: int = 10, beta: int = 10, p: int = 0.3, max_time: int = 20 ) -> None:
         self.vertices = []
         self.matrix = []
         self.l = 0
@@ -14,6 +17,12 @@ class sbhAlgorithm():
         self.filename = filename
         self.algorithm = algorithm
         self.optimum = []
+        
+        self.ants_per_vertex = ants_per_vertex
+        self.alfa = alfa
+        self.beta = beta
+        self.p = p
+        max_time = max_time
     
 
     def __euclidean__(self, a, b):
@@ -114,11 +123,11 @@ class sbhAlgorithm():
 
         # options for manipulation
         ants_per_vertex = 1
-        number_of_vertices_with_ants = 40
-        alfa = 10
-        beta = 10
-        p = 0.3
-        max_time = 20
+        number_of_vertices_with_ants = self.ants_per_vertex
+        alfa = self.alfa
+        beta = self.beta
+        p = self.p
+        max_time = self.max_time
 
         # no improvement counter
         counter = 0
@@ -204,11 +213,11 @@ class sbhAlgorithm():
                 pheromones_matrix[-1].append(0.1)
 
         # options for manipulation
-        ants_per_vertex = 40
-        alfa = 10
-        beta = 10
-        p = 0.3
-        max_time = 20
+        ants_per_vertex = self.ants_per_vertex
+        alfa = self.alfa
+        beta = self.beta
+        p = self.p
+        max_time = self.max_time
 
         # ant placement
         vertex = 0
@@ -324,6 +333,6 @@ if __name__ == '__main__':
     sequence_length = int(sys.argv[2]) # original sequence length
     algorithm = sys.argv[3]
 
-    sbh = sbhAlgorithm(sequence_length, filename, algorithm)
+    sbh = sbhAlgorithm(sequence_length, filename, algorithm, 40, 10, 10, 0.3, 20)
     sbh.main()
 

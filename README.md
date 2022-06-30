@@ -18,14 +18,14 @@ Końcowa ścieżka jest analizowana przez metodę `print_results` i wypisywana w
 ##### Tabela
 |id próby|n|n obliczone| % zgodności|czas dzialania|alfa|beta|p|mrówki na wierzchołek|
 |-|-|-|-|-|-|-|-|-|
-|1|209|207|--|--|10|10|0.3|40
+|1|400|399|99|4.5|10|10|0.3|40
 ##### Wykresy
 
 #### Testowanie sekwencjonowania
 ##### Tabela
 |id próby|n|n obliczone| % zgodności|długośc oligonukleotydów|% błędów wynikajacych<br>z powtórzeń| % błędów negatywnych| % błędów pozytywnych|
 |-|-|-|-|-|-|-|-|
-|1|209|207|--|--|--|--|--|
+|1|400|399|99|10|0|2.5|2.5|
 
 ##### Wykresy
 
