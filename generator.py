@@ -60,9 +60,15 @@ class Generator:
 
     def createErrors(self):
         self.nucleotides_with_errors = deepcopy(self.nucleotides)
-        self.nucleotides_with_errors = self.removeRandomList(self.nucleotides_with_errors, self.n_remove)
-        self.nucleotides_with_errors = self.insertRandomList(self.nucleotides_with_errors, self.n_insert)
         self.nucleotides_with_errors = self.duplicateRandomList(self.nucleotides_with_errors, self.n_duplicate)
+        self.nucleotides_with_errors = self.insertRandomList(self.nucleotides_with_errors, self.n_insert)
+        self.nucleotides_with_errors = self.removeRandomList(self.nucleotides_with_errors, self.n_remove)
+
+        while (len(self.nucleotides) > len(self.nucleotides_with_errors)):
+            self.nucleotides_with_errors = self.insertRandomList(self.nucleotides_with_errors, 1)
+
+        while (len(self.nucleotides) < len(self.nucleotides_with_errors)):
+            self.nucleotides_with_errors = self.removeRandomList(self.nucleotides_with_errors, 1)
     
 
     def print_sequence(self):
@@ -102,3 +108,7 @@ if __name__ == '__main__':
 
     obj = Generator(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate)
     obj.main()
+    print(obj.sequence)
+    print(obj.nucleotides)
+    print(obj.nucleotides_with_errors)
+    print(len(obj.sequence))

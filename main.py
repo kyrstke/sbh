@@ -3,16 +3,18 @@ from sbh import sbhAlgorithm
 from analysis import Analysis
 import sys
 
-def main(sequence_length: int = 209, nucleotide_length: int = 10, n_remove: int = 0, n_insert: int = 0, n_duplicate: int = 0, filename: str = 'nucleotides_with_errors.txt', algorithm: str = 'antColonySearchSW'):
+def main(ants_per_vertex, alfa, beta, p, max_time, sequence_length: int = 209, nucleotide_length: int = 10, n_remove: int = 0, n_insert: int = 0, n_duplicate: int = 0, filename: str = 'nucleotides_with_errors.txt', algorithm: str = 'antColonySearchSW'):
     generator = Generator(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate)
     generator.main()
 
-    sbh = sbhAlgorithm(sequence_length, filename, algorithm)
+    sbh = sbhAlgorithm(ants_per_vertex, alfa, beta, p, max_time,  sequence_length, filename, algorithm)
     sbh.main()
 
     analysis = Analysis(generator.sequence, sbh.result)
     analysis.analyze()
     analysis.print_results()
+
+    return {"ratio": analysis.ratio, "calc_length": len(sbh.result), "elapsed_time": round(sbh.elapsed_time, 1)}
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -29,6 +31,13 @@ if __name__ == '__main__':
         n_remove = 100
         n_insert = 100
         n_duplicate = 0
+
+        ants_per_vertex = 40
+        alfa = 10
+        beta = 10
+        p = 0.3
+        max_time = 20
+
         filename = 'nucleotides_with_errors.txt'
         algorithm = 'antColonySearchSW'
     
@@ -40,4 +49,7 @@ if __name__ == '__main__':
     print(f"Duplicated nucleotides: {n_duplicate} {n_duplicate/nucleotide_quantity}")
 
 
-    main(sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate, filename, algorithm)
+    result = main(ants_per_vertex, alfa, beta, p, max_time, sequence_length, nucleotide_length, n_remove, n_insert, n_duplicate, filename, algorithm)
+
+    print(f"|_id_|{sequence_length}|{result['calc_length']}|{round(result['ratio'], 3)*100}|{result['elapsed_time']}|{alfa}|{beta}|{p}|{ants_per_vertex}|")
+    print(f"|_id_|{sequence_length}|{result['calc_length']}|{round(result['ratio'], 3)*100}|{nucleotide_length}|{round(n_duplicate/nucleotide_quantity, 2)}|{round(n_remove/nucleotide_quantity, 2)}|{round(n_insert/nucleotide_quantity, 2)}|")

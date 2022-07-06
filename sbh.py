@@ -8,8 +8,8 @@ import sys
 from pyrsistent import s
 
 class sbhAlgorithm():
-    def __init__(self, n: int = 200, filename: str = 'nucleotides.txt', algorithm: str = 'antColonySearchSW', 
-    ants_per_vertex: int = 40, alfa: int = 10, beta: int = 10, p: int = 0.3, max_time: int = 20 ) -> None:
+    def __init__(self, ants_per_vertex: int, alfa: int, beta: int, p: int, max_time: int,
+     n: int = 200, filename: str = 'nucleotides.txt', algorithm: str = 'antColonySearchSW') -> None:
         self.vertices = []
         self.matrix = []
         self.l = 0
@@ -22,7 +22,9 @@ class sbhAlgorithm():
         self.alfa = alfa
         self.beta = beta
         self.p = p
-        max_time = max_time
+        self.max_time = max_time
+
+        self.elapsed_time = 0
     
 
     def __euclidean__(self, a, b):
@@ -295,7 +297,8 @@ class sbhAlgorithm():
     
 
     def print_results(self, start, end):
-        print(f'Elapsed time: {round(end - start, 3)} seconds')
+        self.elapsed_time = round(end - start, 3)
+        print(f'Elapsed time: {self.elapsed_time} seconds')
 
         print(f'Goal sequence length: {self.n - self.l + 1}')
         print(f'Vertices visiting order: {self.optimum}')
@@ -333,6 +336,6 @@ if __name__ == '__main__':
     sequence_length = int(sys.argv[2]) # original sequence length
     algorithm = sys.argv[3]
 
-    sbh = sbhAlgorithm(sequence_length, filename, algorithm, 40, 10, 10, 0.3, 20)
+    sbh = sbhAlgorithm(60, 10, 10, 0.3, 20, sequence_length, filename, algorithm)
     sbh.main()
 
