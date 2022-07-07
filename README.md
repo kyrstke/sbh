@@ -16,7 +16,7 @@ Końcowa ścieżka jest analizowana przez metodę `print_results` i wypisywana w
 
 #### Testowanie parametrow algorytmu
 ##### Tabela
-|id próby|n|n obliczone| % zgodności|czas dzialania|alfa|beta|p|mrówki na wierzchołek|
+|id próby|n|n obliczone| % zgodności|czas działania|alfa|beta|p|mrówki na wierzchołek|
 |-|-|-|-|-|-|-|-|-|
 |1|209|207|--|--|10|10|0.3|40
 ##### Wykresy
