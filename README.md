@@ -12,6 +12,53 @@ Algorytm zaczyna od ustawienia wartości parametrów dla mrówek oraz określeni
 #### Wynik
 Końcowa ścieżka jest analizowana przez metodę `print_results` i wypisywana w postaci końcowego, znalezionego łańcucha DNA.
 
+### Uruchamianie
+#### Program
+##### Schemat
+```sh
+py sbh.py n filename algorithm
+```
+Opis parametrów:
+|parametr|opis|przykład|
+|-|-|-|
+|`n`|domyślna długość sekwencji|`209`|
+|`filename`|nazwa pliku z danymi|`nucleotides_with_errors.txt`|
+|`algorithm`|nazwa algorytmu|- `ACO`<br>- `antColonySearch`<br>- `antColonySearchSW`|
+##### Przykład
+```sh
+py sbh.py 209 nucleotides.txt antColonySearchSW
+```
+#### Generator
+##### Schemat
+```sh
+py generator.py n nucleotides errors
+```
+Opis parametrów:
+|parametr|opis|przykład|
+|-|-|-|
+|`n`|domyślna długość sekwencji|`209`|
+|`nucleotides`|długość nukleotydów|`10`|
+|`errors`|opcje błędów rozdzielone `,`,<br>kolejnośc dowolna<br>`:` jako  separator skrótu i liczby<br>`x`, `y`, `z` jako liczby błędów |- usunięcie: `r:x`<br>- insercja: `i:y`<br>- duplikacja: `d:z`|
+##### Przykład
+```sh
+py generator.py 209 10 r:10,i:5,d:20
+```
+#### Uruchamianie generatora, algorytmu i analizatora wyników (automatyzacja)
+##### Schemat
+```sh
+py main.py sequence_length nucleotide_length n_remove n_insert n_duplicate filename algorithm
+```
+Opis parametrów:
+|parametr|opis|przykład|
+|-|-|-|
+|`sequence_length`|domyślna długość sekwencji|`209`|
+|`nucleotide_length`|długość nukleotydów|`10`|
+|`n_remove`|liczba usuniętych nukleotydów|`0`|
+|`n_insert`|liczba dodanych nukleotydów|`0`|
+|`n_duplicate`|liczba powtórzeń|`0`|
+|`filename`|nazwa pliku z danymi|`nucleotides_with_errors.txt`|
+|`algorithm`|nazwa algorytmu|- `ACO`<br>- `antColonySearch`<br>- `antColonySearchSW`|
+
 ### Testy
 
 #### Testowanie parametrow algorytmu
@@ -127,8 +174,6 @@ Ustalona wartość parametru: alfa = 12
 |19|800|800|100.0|37.56|12|20|0.45|25|
 
 Ustalona wartość parametru: beta = 12
-
-##### Wykresy
 
 #### Testowanie sekwencjonowania
 ##### Parametry
@@ -259,56 +304,138 @@ Ustalona wartość parametru: beta = 12
 |48|1000|1000|100.0|85.38|10|0.0|5.0|5.0|
 |49|1000|1000|100.0|85.61|10|0.0|5.0|5.0|
 
+##### Parametry
+|parametr|wartość|
+|-|-|
+|p|0.45|
+|alfa|12|
+|beta|12|
+|mrówki|25|
+|błędy pozytywne|0%|
+|błędy negatywne|5%|
+
+##### Tabela
+|id próby|n|n obliczone| % zgodności|czas działania|długość oligonukleotydów|% błędów wynikajacych<br>z powtórzeń| % błędów negatywnych| % błędów pozytywnych|
+|-|-|-|-|-|-|-|-|-|
+|0|100|99|99.5|0.12|10|0.0|5.0|0.0|
+|1|100|100|100.0|0.08|10|0.0|5.0|0.0|
+|2|100|96|98.0|0.08|10|0.0|5.0|0.0|
+|3|100|100|100.0|0.1|10|0.0|5.0|0.0|
+|4|100|100|100.0|0.07|10|0.0|5.0|0.0|
+|5|200|199|99.7|0.78|10|0.0|5.0|0.0|
+|6|200|200|100.0|0.78|10|0.0|5.0|0.0|
+|7|200|200|100.0|0.78|10|0.0|5.0|0.0|
+|8|200|200|100.0|0.77|10|0.0|5.0|0.0|
+|9|200|199|99.7|0.79|10|0.0|5.0|0.0|
+|10|300|300|100.0|2.78|10|0.0|5.0|0.0|
+|11|300|300|100.0|3.03|10|0.0|5.0|0.0|
+|12|300|300|100.0|2.79|10|0.0|5.0|0.0|
+|13|300|300|100.0|2.74|10|0.0|5.0|0.0|
+|14|300|300|100.0|2.56|10|0.0|5.0|0.0|
+|15|400|399|99.9|5.89|10|0.0|5.0|0.0|
+|16|400|400|100.0|6.04|10|0.0|5.0|0.0|
+|17|400|400|100.0|6.2|10|0.0|5.0|0.0|
+|18|400|400|100.0|5.86|10|0.0|5.0|0.0|
+|19|400|400|100.0|6.0|10|0.0|5.0|0.0|
+|20|500|499|99.9|12.85|10|0.0|5.0|0.0|
+|21|500|500|100.0|12.07|10|0.0|5.0|0.0|
+|22|500|499|99.9|12.38|10|0.0|5.0|0.0|
+|23|500|500|100.0|12.2|10|0.0|5.0|0.0|
+|24|500|500|100.0|11.28|10|0.0|5.0|0.0|
+|25|600|600|100.0|19.99|10|0.0|5.0|0.0|
+|26|600|599|99.9|19.94|10|0.0|5.0|0.0|
+|27|600|599|99.9|21.1|10|0.0|5.0|0.0|
+|28|600|600|100.0|19.16|10|0.0|5.0|0.0|
+|29|600|600|100.0|21.05|10|0.0|5.0|0.0|
+|30|700|700|100.0|31.33|10|0.0|5.0|0.0|
+|31|700|700|100.0|33.24|10|0.0|5.0|0.0|
+|32|700|700|100.0|40.24|10|0.0|5.0|0.0|
+|33|700|700|100.0|38.77|10|0.0|5.0|0.0|
+|34|700|700|100.0|34.1|10|0.0|5.0|0.0|
+|35|800|799|99.9|45.71|10|0.0|5.0|0.0|
+|36|800|800|100.0|44.74|10|0.0|5.0|0.0|
+|37|800|799|99.9|45.43|10|0.0|5.0|0.0|
+|38|800|800|100.0|46.0|10|0.0|5.0|0.0|
+|39|800|800|100.0|52.18|10|0.0|5.0|0.0|
+|40|900|900|100.0|65.68|10|0.0|5.0|0.0|
+|41|900|900|100.0|63.66|10|0.0|5.0|0.0|
+|42|900|900|100.0|64.32|10|0.0|5.0|0.0|
+|43|900|900|100.0|64.85|10|0.0|5.0|0.0|
+|44|900|900|100.0|64.56|10|0.0|5.0|0.0|
+|45|1000|1000|100.0|87.33|10|0.0|5.0|0.0|
+|46|1000|1000|100.0|106.22|10|0.0|5.0|0.0|
+|47|1000|1000|100.0|132.0|10|0.0|5.0|0.0|
+|48|1000|1000|100.0|134.59|10|0.0|5.0|0.0|
+|49|1000|1000|100.0|136.34|10|0.0|5.0|0.0|
+
+##### Parametry
+|parametr|wartość|
+|-|-|
+|p|0.45|
+|alfa|12|
+|beta|12|
+|mrówki|25|
+|błędy pozytywne|5%|
+|błędy negatywne|0%|
+
+##### Tabela
+|id próby|n|n obliczone| % zgodności|czas działania|długość oligonukleotydów|% błędów wynikajacych<br>z powtórzeń| % błędów negatywnych| % błędów pozytywnych|
+|-|-|-|-|-|-|-|-|-|
+|0|100|100|96.0|0.14|10|0.0|0.0|5.0|
+|1|100|100|94.0|0.17|10|0.0|0.0|5.0|
+|2|100|98|99.0|0.23|10|0.0|0.0|5.0|
+|3|100|100|96.0|0.13|10|0.0|0.0|5.0|
+|4|100|100|100.0|0.23|10|0.0|0.0|5.0|
+|5|200|199|99.7|1.24|10|0.0|0.0|5.0|
+|6|200|200|100.0|1.18|10|0.0|0.0|5.0|
+|7|200|200|100.0|2.0|10|0.0|0.0|5.0|
+|8|200|199|99.7|1.9|10|0.0|0.0|5.0|
+|9|200|200|100.0|1.99|10|0.0|0.0|5.0|
+|10|300|300|100.0|5.14|10|0.0|0.0|5.0|
+|11|300|300|100.0|4.45|10|0.0|0.0|5.0|
+|12|300|300|100.0|3.37|10|0.0|0.0|5.0|
+|13|300|299|99.8|3.2|10|0.0|0.0|5.0|
+|14|300|299|99.8|3.12|10|0.0|0.0|5.0|
+|15|400|400|100.0|7.06|10|0.0|0.0|5.0|
+|16|400|400|100.0|7.31|10|0.0|0.0|5.0|
+|17|400|400|100.0|6.96|10|0.0|0.0|5.0|
+|18|400|400|100.0|7.54|10|0.0|0.0|5.0|
+|19|400|400|100.0|7.62|10|0.0|0.0|5.0|
+|20|500|500|100.0|12.59|10|0.0|0.0|5.0|
+|21|500|500|100.0|12.1|10|0.0|0.0|5.0|
+|22|500|499|99.9|12.83|10|0.0|0.0|5.0|
+|23|500|500|100.0|11.9|10|0.0|0.0|5.0|
+|24|500|500|100.0|12.52|10|0.0|0.0|5.0|
+|25|600|600|100.0|20.6|10|0.0|0.0|5.0|
+|26|600|600|100.0|20.36|10|0.0|0.0|5.0|
+|27|600|598|99.8|22.64|10|0.0|0.0|5.0|
+|28|600|600|100.0|21.88|10|0.0|0.0|5.0|
+|29|600|599|99.9|22.39|10|0.0|0.0|5.0|
+|30|700|700|100.0|32.45|10|0.0|0.0|5.0|
+|31|700|700|100.0|32.3|10|0.0|0.0|5.0|
+|32|700|700|100.0|32.58|10|0.0|0.0|5.0|
+|33|700|700|100.0|33.3|10|0.0|0.0|5.0|
+|34|700|700|100.0|32.66|10|0.0|0.0|5.0|
+|35|800|800|100.0|47.12|10|0.0|0.0|5.0|
+|36|800|800|100.0|48.41|10|0.0|0.0|5.0|
+|37|800|800|100.0|48.62|10|0.0|0.0|5.0|
+|38|800|800|100.0|48.38|10|0.0|0.0|5.0|
+|39|800|800|100.0|48.28|10|0.0|0.0|5.0|
+|40|900|900|100.0|67.9|10|0.0|0.0|5.0|
+|41|900|900|100.0|67.73|10|0.0|0.0|5.0|
+|42|900|900|100.0|68.09|10|0.0|0.0|5.0|
+|43|900|900|100.0|68.04|10|0.0|0.0|5.0|
+|44|900|900|100.0|67.31|10|0.0|0.0|5.0|
+|45|1000|1000|100.0|92.14|10|0.0|0.0|5.0|
+|46|1000|999|99.9|92.83|10|0.0|0.0|5.0|
+|47|1000|1000|100.0|89.76|10|0.0|0.0|5.0|
+|48|1000|1000|100.0|113.45|10|0.0|0.0|5.0|
+|49|1000|1000|100.0|109.31|10|0.0|0.0|5.0|
+
 ##### Wykresy
 
 ### Wnioski [POTRZEBNE?]
 
-### Uruchamianie
-#### Program
-##### Schemat
-```sh
-py sbh.py n filename algorithm
-```
-Opis parametrów:
-|parametr|opis|przykład|
-|-|-|-|
-|`n`|domyślna długość sekwencji|`209`|
-|`filename`|nazwa pliku z danymi|`nucleotides_with_errors.txt`|
-|`algorithm`|nazwa algorytmu|- `ACO`<br>- `antColonySearch`<br>- `antColonySearchSW`|
-##### Przykład
-```sh
-py sbh.py 209 nucleotides.txt antColonySearchSW
-```
-#### Generator
-##### Schemat
-```sh
-py generator.py n nucleotides errors
-```
-Opis parametrów:
-|parametr|opis|przykład|
-|-|-|-|
-|`n`|domyślna długość sekwencji|`209`|
-|`nucleotides`|długość nukleotydów|`10`|
-|`errors`|opcje błędów rozdzielone `,`,<br>kolejnośc dowolna<br>`:` jako  separator skrótu i liczby<br>`x`, `y`, `z` jako liczby błędów |- usunięcie: `r:x`<br>- insercja: `i:y`<br>- duplikacja: `d:z`|
-##### Przykład
-```sh
-py generator.py 209 10 r:10,i:5,d:20
-```
-#### Uruchamianie generatora, algorytmu i analizatora wyników (automatyzacja)
-##### Schemat
-```sh
-py main.py sequence_length nucleotide_length n_remove n_insert n_duplicate filename algorithm
-```
-Opis parametrów:
-|parametr|opis|przykład|
-|-|-|-|
-|`sequence_length`|domyślna długość sekwencji|`209`|
-|`nucleotide_length`|długość nukleotydów|`10`|
-|`n_remove`|liczba usuniętych nukleotydów|`0`|
-|`n_insert`|liczba dodanych nukleotydów|`0`|
-|`n_duplicate`|liczba powtórzeń|`0`|
-|`filename`|nazwa pliku z danymi|`nucleotides_with_errors.txt`|
-|`algorithm`|nazwa algorytmu|- `ACO`<br>- `antColonySearch`<br>- `antColonySearchSW`|
 ---
 <p align="center">© Created by Konrad Romański & Krystian Jakusik</p>
 
