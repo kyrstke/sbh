@@ -28,8 +28,8 @@ if __name__ == '__main__':
     else:
         sequence_length = 100
         nucleotide_length = 10
-        n_remove = int(0.5 * sequence_length)
-        n_insert = 0  # int(0.75 * sequence_length)
+        n_remove = 0  # int(0.5 * sequence_length)
+        n_insert = int(0.5 * sequence_length)
         n_duplicate = 0
 
         filename = 'nucleotides_with_errors.txt'
