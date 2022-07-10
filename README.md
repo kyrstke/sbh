@@ -255,10 +255,6 @@ Ustalona wartość parametru: beta = 12
 |48|1000|1000|100.0|90.75|10|0.0|2.5|2.5|
 |49|1000|1000|100.0|92.88|10|0.0|2.5|2.5|
 
-
-![n1 chart time](./images/chart_n1_t.png)
-![n1 chart %](./images/chart_n1_p.png)
-
 ![n1 chart time avg](./images/chart_n1_t_a.png)
 ![n1 chart % avg](./images/chart_n1_p_a.png)
 
@@ -325,9 +321,6 @@ Ustalona wartość parametru: beta = 12
 |47|1000|1000|100.0|89.35|10|0.0|5.0|5.0|
 |48|1000|1000|100.0|85.38|10|0.0|5.0|5.0|
 |49|1000|1000|100.0|85.61|10|0.0|5.0|5.0|
-
-![n2 chart time](./images/chart_n2_t.png)
-![n2 chart %](./images/chart_n2_p.png)
 
 ![n2 chart time avg](./images/chart_n2_t_a.png)
 ![n2 chart % avg](./images/chart_n2_p_a.png)
@@ -396,9 +389,6 @@ Ustalona wartość parametru: beta = 12
 |48|1000|1000|100.0|134.59|10|0.0|5.0|0.0|
 |49|1000|1000|100.0|136.34|10|0.0|5.0|0.0|
 
-![n3 chart time](./images/chart_n3_t.png)
-![n3 chart %](./images/chart_n3_p.png)
-
 ![n3 chart time avg](./images/chart_n3_t_a.png)
 ![n3 chart % avg](./images/chart_n3_p_a.png)
 ##### Parametry
@@ -464,9 +454,6 @@ Ustalona wartość parametru: beta = 12
 |47|1000|1000|100.0|89.76|10|0.0|0.0|5.0|
 |48|1000|1000|100.0|113.45|10|0.0|0.0|5.0|
 |49|1000|1000|100.0|109.31|10|0.0|0.0|5.0|
-
-![n4 chart time](./images/chart_n4_t.png)
-![n4 chart %](./images/chart_n4_p.png)
 
 ![n4 chart time avg](./images/chart_n4_t_a.png)
 ![n4 chart % avg](./images/chart_n4_p_a.png)
