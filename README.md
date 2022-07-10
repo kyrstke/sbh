@@ -48,6 +48,9 @@ Końcowa ścieżka jest analizowana przez metodę `print_results` i wypisywana w
 |18|800|800|94.9|92.37|10|10|0.3|57|
 |19|800|800|100.0|91.7|10|10|0.3|60|
 
+![ants chart time](./images/chart_ants_t.png)
+![ants chart %](./images/chart_ants_p.png)
+
 Ustalona wartość parametru: 25 mrówek
 
 ##### Parametr p
@@ -73,6 +76,10 @@ Ustalona wartość parametru: 25 mrówek
 |17|800|795|81.3|29.09|10|10|0.9|25|
 |18|800|800|100.0|31.19|10|10|0.95|25|
 |19|800|800|100.0|34.37|10|10|1|25|
+
+
+![p chart time](./images/chart_p_t.png)
+![p chart %](./images/chart_p_p.png)
 
 Ustalona wartość parametru: p = 0.45
 
@@ -100,6 +107,10 @@ Ustalona wartość parametru: p = 0.45
 |18|800|800|100.0|34.31|19|10|0.45|25|
 |19|800|798|99.9|33.29|20|10|0.45|25|
 
+
+![alfa chart time](./images/chart_alfa_t.png)
+![alfa chart %](./images/chart_alfa_p.png)
+
 Ustalona wartość parametru: alfa = 12
 
 ##### Parametr beta
@@ -125,6 +136,10 @@ Ustalona wartość parametru: alfa = 12
 |17|800|798|99.9|63.28|12|18|0.45|25|
 |18|800|800|85.1|33.76|12|19|0.45|25|
 |19|800|800|100.0|37.56|12|20|0.45|25|
+
+
+![beta chart time](./images/chart_beta_t.png)
+![beta chart %](./images/chart_beta_p.png)
 
 Ustalona wartość parametru: beta = 12
 
@@ -195,6 +210,10 @@ Ustalona wartość parametru: beta = 12
 |48|1000|1000|100.0|90.75|10|0.0|2.5|2.5|
 |49|1000|1000|100.0|92.88|10|0.0|2.5|2.5|
 
+
+![n1 chart time](./images/chart_n1_t.png)
+![n1 chart %](./images/chart_n1_p.png)
+
 ##### Parametry
 |parametr|wartość|
 |-|-|
@@ -258,6 +277,9 @@ Ustalona wartość parametru: beta = 12
 |47|1000|1000|100.0|89.35|10|0.0|5.0|5.0|
 |48|1000|1000|100.0|85.38|10|0.0|5.0|5.0|
 |49|1000|1000|100.0|85.61|10|0.0|5.0|5.0|
+
+![n2 chart time](./images/chart_n2_t.png)
+![n2 chart %](./images/chart_n2_p.png)
 
 ##### Wykresy
 
