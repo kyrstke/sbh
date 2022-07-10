@@ -141,7 +141,7 @@ Ustalona wartość parametru: beta = 12
 
 ##### Tabela
 |id próby|n|n obliczone| % zgodności|czas działania|długość oligonukleotydów|% błędów wynikajacych<br>z powtórzeń| % błędów negatywnych| % błędów pozytywnych|
-|-|-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|-|-|
 |0|100|100|100.0|0.18|10|0.0|2.5|2.5|
 |1|100|100|100.0|0.15|10|0.0|2.5|2.5|
 |2|100|100|100.0|0.14|10|0.0|2.5|2.5|
