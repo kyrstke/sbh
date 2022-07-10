@@ -191,6 +191,8 @@ Ustalona wartość parametru: alfa = 12
 Ustalona wartość parametru: beta = 12
 
 #### Testowanie sekwencjonowania
+Dla każdej testowanej długości sekwencji dokonywanych jest 5 pomiarów, następnie ich wyniki są uśredniane i wykresy tworzone są na podstawie 1 uśrednionej wartości dla każdego n (100, 200, ..., 1000).
+
 ##### Parametry
 |parametr|wartość|
 |-|-|
@@ -458,7 +460,8 @@ Ustalona wartość parametru: beta = 12
 ![n4 chart time avg](./images/chart_n4_t_a.png)
 ![n4 chart % avg](./images/chart_n4_p_a.png)
 
-### Wnioski [POTRZEBNE?]
+### Wnioski
+Algorytm radzi sobie z zadanym problemem z dokładnością bliską 100%. Wraz z liniowym przyrostem długości sekwencji czas potrzebny do odnalezienia najlepszej ścieżki rośnie eksponencjalnie. Dokładność jest niezależna od wielkości instancji. Skrócenie maksymalnego czasu działania programu dla większych długości sekwencji mogłoby zmniejszyć dokładność algorytmu, jednak czasy są zadowalające.
 
 ---
 <p align="center">© Created by Konrad Romański & Krystian Jakusik</p>
