@@ -11,8 +11,8 @@ class Analysis():
         self.ratio = lev.ratio(self.base, self.result)
 
     def print_results(self):
-        print(f'Base sequence: {self.base}')
-        print(f'Result sequence: {self.result}')
+        # print(f'Base sequence: {self.base}')
+        # print(f'Result sequence: {self.result}')
         print(f'Levenshtein distance: {self.distance}')
         print(f'Ratio (similarity): {round(self.ratio, 3)}')
 

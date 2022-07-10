@@ -149,7 +149,7 @@ class sbhAlgorithm():
                     counter += 1
 
                     # ant is going to walk through the graph
-                    print(f'ant {ant} started its path at vertex {vertex}...')
+                    # print(f'ant {ant} started its path at vertex {vertex}...')
                     while True:
                         vertices_probabilites = []
                         sum = 0
@@ -239,14 +239,13 @@ class sbhAlgorithm():
                 counter += 1
 
                 # ant is going to walk through the graph
-                print(f'ant {ant} started its path...')
+                # print(f'ant {ant} started its path...')
                 while True:
                     vertices_probabilites = []
                     sum = 0
                     for i in range(len(self.vertices)):
-                        if (i not in current_path) and (current_sequence_length + self.matrix[current_path[-1]][i] <= self.n):
+                        if (i not in current_path) and (current_sequence_length + self.matrix[current_path[-1]][i] <= self.n) and (self.matrix[current_path[-1]][i] != 0):
                             sum += pow(pheromones_matrix[current_path[-1]][i], alfa) * pow(1 / self.matrix[current_path[-1]][i], beta)
-                            # print(sum)
                         vertices_probabilites.append(sum)
 
                     if sum == 0:
@@ -285,19 +284,19 @@ class sbhAlgorithm():
 
             # end of time
             end = time.time()
-            print(f'Current time is: {round(end - start, 3)} seconds')
+            # print(f'Current time is: {round(end - start, 3)} seconds')
 
             
             # print(f'Current optimal path: {optimum}')
 
             if len(self.optimum) == self.n - self.l + 1 or counter >= 10 or end - start > max_time:
                 self.merge_into_sequence(self.optimum)
-                self.print_results(start, end)
+                self.elapsed_time = round(end - start, 3)
+                # self.print_results(start, end)
                 break
     
 
-    def print_results(self, start, end):
-        self.elapsed_time = round(end - start, 3)
+    def print_results(self):
         print(f'Elapsed time: {self.elapsed_time} seconds')
 
         print(f'Goal sequence length: {self.n - self.l + 1}')
